@@ -10,4 +10,14 @@ class DefaultController extends Controller
     {
         return $this->render('AzgilGalleryBundle:Default:index.html.twig', array('name' => $name));
     }
+    
+    public function showImageAction(){
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('AzgilGalleryBundle:Picture')->findAll();
+
+        return $this->render('AzgilGalleryBundle:Default:showimage.html.twig', array(
+            'entities' => $entities,
+        ));
+    }
 }
